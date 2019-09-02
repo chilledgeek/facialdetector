@@ -3,10 +3,7 @@
   - This is based on machine learning so cannot expect the sorting to be 100% accurate!
 - Simple script/application/wrapper based on the package [opencv-python](https://github.com/skvark/opencv-python)
   - This package saves all the trouble for installing opencv and the dependencies separately. Simply just do a pip install: ```pip install opencv-python```, and it should work
-  
-- After playing around, the settings scale_factor=1.1, min_neighbors=8 seemed to work ok (therefore set as default)
+  - Doesn't even need tweaking any settings and it seemed to work well! 
+  (previously played with this and had settings scale_factor=1.1, min_neighbors=8 that seemed to work ok
+  - Noticed that it doesn't detect rotated photos for now
 
-
-
-    consider trying:
-    https://www.analyticsvidhya.com/blog/2018/12/introduction-face-detection-video-deep-learning-python/
