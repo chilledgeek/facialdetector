@@ -1,0 +1,11 @@
+# Source of test images
+- Photo(s) without faces in this folder were taken/copyrighted by me
+- Photos covered by license: [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/)
+  - [Photo of Katharine McPhee](https://www.flickr.com/photos/82924988@N05/28570419040/)
+    - Copyright by: [Dominic D](https://www.flickr.com/photos/idominick/) on 2016-07-21
+  - [Photo of Jennifer Aniston](https://www.flickr.com/photos/gdcgraphics/3030180366/in/set-72157607247444523/)
+    - Copyright by: [Gorden Correll](https://www.flickr.com/photos/gdcgraphics/) on 2008-09
+  - [Photo of Ed Sheeran](https://www.flickr.com/photos/58820009@N05/8507661201)
+    - [Copyright by: Eva Rinaldi](https://www.flickr.com/photos/evarinaldiphotography/)
+  - [Photo of Nick Zano, Elisha Cuthbert, and Kelly Brook](https://www.flickr.com/photos/47170787@N05/15690145244/)
+    - Copyright by: [Red Carpet Report on Mingle Media TV](https://www.flickr.com/photos/minglemediatv/) on 2015-01-16
