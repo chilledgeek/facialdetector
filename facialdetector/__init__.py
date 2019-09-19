@@ -1,6 +1,5 @@
 import os
 import shutil
-import argparse
 import logging
 import csv
 
@@ -15,10 +14,10 @@ logger = logging.getLogger(__name__)
 class ResultsAggregator:
     def __init__(self,
                  dir_to_process: str,
-                 detection_record_csv="facial_detection_record.csv",
-                 batch_size=500,
+                 detection_record_csv: str = "facial_detection_record.csv",
+                 batch_size: int = 500,
                  formats_allowed: tuple = None,
-                 n_jobs=8,
+                 n_jobs: int = 8,
                  ):
         """
         1. loads detection record (csv file with columns "filepath" and "has_faces"
@@ -113,33 +112,3 @@ class ResultsAggregator:
             logger.info("Copying files to " + str(output_filepath))
             os.makedirs(os.path.dirname(output_filepath), exist_ok=True)
             shutil.copy2(to_copy, output_filepath)
-
-
-def main(input_dir,
-         output_dir,
-         n_jobs):
-    """
-    currently main only set to copy photos without faces to output_dir!
-    :param input_dir: input directory
-    :param output_dir: output directory
-    :param n_jobs: jobs to run in parallel
-    :return:
-    """
-    results_agg = ResultsAggregator(input_dir, n_jobs=n_jobs)
-    results_agg.run_detection()
-    results_agg.copy_photos_to_output_dir(output_dir)
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='get command line options')
-    parser.add_argument("-i", "--input_dir", type=str,
-                        help='input dir to read and detect faces')
-    parser.add_argument("-o", "--output_dir", type=str, default="face_detector_output",
-                        help='output dir to copy files without faces to')
-    parser.add_argument("-n", "--n_jobs", type=int, default=4,
-                        help='number of jobs to run in parallel')
-    args = parser.parse_args()
-    my_input_path = args.input_dir
-    my_output_path = args.output_dir
-    my_n_jobs = args.n_jobs
-    main(my_input_path, my_output_path, my_n_jobs)
