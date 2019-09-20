@@ -1,7 +1,7 @@
 import setuptools
 
 package_name = "facialdetector"
-package_version = "1.0.0"
+package_version = "0.0.1"
 packages = ['opencv-python']
 long_description = open("README.md", "r").read()
 
