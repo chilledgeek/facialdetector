@@ -1,7 +1,7 @@
 import setuptools
 
 package_name = "facialdetector"
-package_version = "0.0.1"
+package_version = "0.0.2"
 packages = ['opencv-python']
 long_description = open("README.md", "r").read()
 
@@ -11,6 +11,7 @@ setuptools.setup(name=package_name,
                  author_email="chilledgeek@gmail.com",
                  description='Simple facial detection app',
                  long_description=long_description,
+                 long_description_content_type="text/markdown",
                  url='https://github.com/chilledgeek/facialdetector',
                  install_requires=packages,
                  classifiers=[
