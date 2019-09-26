@@ -42,5 +42,5 @@ class TestImaging(unittest.TestCase):
     def tearDown(self):
         if os.path.isfile(self.output_filepath):
             os.remove(self.output_filepath)
-        if os.path.isfile(self.output_filepath):
-            os.remove(self.output_filepath)
+        if os.path.isfile(self.output_filepath_rotated):
+            os.remove(self.output_filepath_rotated)
