@@ -14,16 +14,35 @@ class FacialDetector:
     Has option to output move image
     """
 
-    def __init__(self):
+    def __init__(self, detect_rotated=False):
+        self.detect_rotated = detect_rotated
         self.loaded_img = None
         self.rgb_img = None
         self.face_locations = None
+        self.height = None
+        self.center = None
+        self.weight = None
 
     def detect_faces(self,
                      input_filepath: str):
         self.loaded_img = cv2.imread(input_filepath)
+
         self.rgb_img = self.loaded_img[:, :, ::-1]
+
+        # detect faces
         self.face_locations = face_recognition.face_locations(self.rgb_img)
+
+        if self.detect_rotated:
+            # get image height, width
+            (self.height, self.weight) = self.loaded_img.shape[:2]
+            # calculate the center of the image
+            self.center = (self.weight / 2, self.height / 2)
+
+            for degrees in (90, 180, 270):
+                rotated_matrix = cv2.getRotationMatrix2D(self.center, degrees, 1)
+                rotated_img = cv2.warpAffine(
+                    self.loaded_img, rotated_matrix, (self.height, self.weight))[:, :, ::-1]
+                self.face_locations.extend(face_recognition.face_locations(rotated_img))
 
     def visualiser(self,
                    show_visualiser: bool = True,

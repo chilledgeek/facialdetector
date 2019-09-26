@@ -1,18 +1,18 @@
 import setuptools
 
-package_name = "facialdetector"
+package_name = "photo_sorter"
 package_version = "0.0.2"
-packages = ['opencv-python']
+packages = ['opencv-python', "joblib", "matplotlib", "face-recognition", "cmake", "dlib"]
 long_description = open("README.md", "r").read()
 
 setuptools.setup(name=package_name,
                  version=package_version,
                  author="E CHOW",
                  author_email="chilledgeek@gmail.com",
-                 description='Simple facial detection app',
+                 description='Simple photo sorter app',
                  long_description=long_description,
                  long_description_content_type="text/markdown",
-                 url='https://github.com/chilledgeek/facialdetector',
+                 url='https://github.com/chilledgeek/photo_sorter',
                  install_requires=packages,
                  classifiers=[
                      'License :: OSI Approved :: MIT License',

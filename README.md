@@ -1,11 +1,12 @@
-# Facial Detector
+# Photo Sorter
+## Facial detector
 - Simple script/application/wrapper to classify whether photos have faces or not
 
   - Based on the package [opencv-python](https://github.com/skvark/opencv-python)
 
 - Based on machine learning so cannot expect the sorting to be 100% accurate!
 
-- Note: it doesn't detect rotated photos (yet!)
+- Now detects rotated photos
 
 # How to use
 

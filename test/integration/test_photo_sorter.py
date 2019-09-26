@@ -1,7 +1,7 @@
 import shutil
 import unittest
 import os
-from facialdetector import ResultsAggregator
+from photo_sorter import ResultsAggregator
 
 test_data_dir = os.path.dirname(os.path.realpath(__file__))
 

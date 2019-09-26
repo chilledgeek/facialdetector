@@ -5,7 +5,7 @@ import csv
 
 from joblib import Parallel, delayed
 
-from facialdetector.imaging import FacialDetector
+from photo_sorter.facial_detector import FacialDetector
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -18,6 +18,7 @@ class ResultsAggregator:
                  batch_size: int = 500,
                  formats_allowed: tuple = None,
                  n_jobs: int = 8,
+                 detect_rotated=False
                  ):
         """
         1. loads detection record (csv file with columns "filepath" and "has_faces"
@@ -47,6 +48,7 @@ class ResultsAggregator:
 
         self.detection_results = None
         self.file_results_list = None
+        self.detect_rotated = detect_rotated
 
     def _update_saved_records(self):
         if os.path.isfile(self.detection_record_csv):
@@ -62,11 +64,10 @@ class ResultsAggregator:
                     self.files_to_process.append(filepath)
         logger.info("files to analyse: " + str(len(self.files_to_process)))
 
-    @staticmethod
-    def _run_detection_for_single_file(file):
+    def _run_detection_for_single_file(self, file):
         try:
             logging.info("Processed file: " + str(file))
-            detector = FacialDetector()
+            detector = FacialDetector(detect_rotated=self.detect_rotated)
             detector.detect_faces(file)
             return len(detector.face_locations)
         except Exception as e:
