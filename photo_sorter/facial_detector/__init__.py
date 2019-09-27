@@ -14,8 +14,9 @@ class FacialDetector:
     Has option to output move image
     """
 
-    def __init__(self, detect_rotated: bool=False):
+    def __init__(self, detect_rotated: bool = False, skip_original_angle: bool = False):
         self.detect_rotated = detect_rotated
+        self.skip_original_angle = skip_original_angle
         self.loaded_img = None
         self.rgb_img = None
         self.face_locations = None
@@ -24,16 +25,19 @@ class FacialDetector:
         self.weight = None
         if self.detect_rotated:
             logger.info("will detect rotated images (more time required!)")
-
+        if self.skip_original_angle:
+            logger.info("will skip original image angle (to save a bit of time!)")
 
     def detect_faces(self,
                      input_filepath: str):
         self.loaded_img = cv2.imread(input_filepath)
 
-        self.rgb_img = self.loaded_img[:, :, ::-1]
-
         # detect faces
-        self.face_locations = face_recognition.face_locations(self.rgb_img)
+        if self.skip_original_angle:
+            self.face_locations = []
+        else:
+            self.rgb_img = self.loaded_img[:, :, ::-1]
+            self.face_locations = face_recognition.face_locations(self.rgb_img)
 
         if self.detect_rotated:
             # get image height, width

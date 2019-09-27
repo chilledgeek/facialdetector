@@ -18,7 +18,8 @@ class ResultsAggregator:
                  batch_size: int = 500,
                  formats_allowed: tuple = None,
                  n_jobs: int = 8,
-                 detect_rotated=False
+                 detect_rotated=False,
+                 skip_original_angle=False
                  ):
         """
         1. loads detection record (csv file with columns "filepath" and "has_faces"
@@ -49,6 +50,7 @@ class ResultsAggregator:
         self.detection_results = None
         self.file_results_list = None
         self.detect_rotated = detect_rotated
+        self.skip_original_angle = skip_original_angle
 
     def _update_saved_records(self):
         if os.path.isfile(self.detection_record_csv):
@@ -67,7 +69,9 @@ class ResultsAggregator:
     def _run_detection_for_single_file(self, file):
         try:
             logging.info("Processed file: " + str(file))
-            detector = FacialDetector(detect_rotated=self.detect_rotated)
+            detector = FacialDetector(
+                detect_rotated=self.detect_rotated,
+                skip_original_angle=self.skip_original_angle)
             detector.detect_faces(file)
             return len(detector.face_locations)
         except Exception as e:
