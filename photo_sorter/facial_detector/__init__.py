@@ -14,7 +14,7 @@ class FacialDetector:
     Has option to output move image
     """
 
-    def __init__(self, detect_rotated=False):
+    def __init__(self, detect_rotated: bool=False):
         self.detect_rotated = detect_rotated
         self.loaded_img = None
         self.rgb_img = None
@@ -22,6 +22,9 @@ class FacialDetector:
         self.height = None
         self.center = None
         self.weight = None
+        if self.detect_rotated:
+            logger.info("will detect rotated images (more time required!)")
+
 
     def detect_faces(self,
                      input_filepath: str):
